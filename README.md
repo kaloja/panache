@@ -22,8 +22,8 @@ Use this library with `panache` or `$`. The `$` is just an alias for panache.
 Select the matched element from the document or context. It use selector method based on type of inserted selector.
 
 ```js
-panache(selector) // => collection, selected from root of the document
-panache(selector, context) // => collection, selected from context
+panache(selector) // => collection
+panache(selector, context) // => collection
 ```
 
 ### A
