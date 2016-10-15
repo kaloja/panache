@@ -295,6 +295,10 @@ Get the width of the viewport.
 panache.width() // => integer
 ```
 
+## Contribute
+If you want to improve Panache, feel free to contribute. I will appreciate it, cooperation gives better results. 
+You can do this by create a pull request.
+
 ## License
 The MIT License
 
