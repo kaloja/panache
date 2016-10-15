@@ -1,0 +1,20 @@
+{
+    "name": "panache",
+    "version": "1.0.0",
+    "title": "Panache",
+    "description": "Panache is a JavaScript helper library.",
+    "author": "@kaloja",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kaloja/panache.git"
+    },
+    "devDependencies": {
+        "gulp": "^3.8.8",
+        "gulp-rename": "^1.0.3",
+        "gulp-concat": "^2.6.0",
+        "gulp-uglify": "^1.5.1",
+        "gulp-header": "^1.7.1",
+        "gulp-plumber": "^1.0.1"
+    }
+}
