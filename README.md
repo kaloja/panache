@@ -182,6 +182,10 @@ panache.last(element) // => collection
 #### move()
 Move the matched element `up`, `down`, `right` or `left` in viewport with set `speed` on scroll. You can regulate the speed, higher number means lower speed on the movement. You must use `animate()` to execute the scroll event.
 
+`element => string`
+`direction => string`
+`speed => integer`
+
 ```js
 panache.move(element, direction, speed) // => collection
 ```
@@ -283,7 +287,6 @@ panache.width() // => integer
 ```
 
 ## License
-
 The MIT License
 
 Copyright (c) 2016 Mattias Haal
