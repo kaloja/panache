@@ -16,7 +16,7 @@ Download Panache and add it to your project. Ensure you use the compiled file in
 ## Use
 Use this library with `panache` or `$`. The `$` is just an alias for panache.
 
-## Panache API documentation
+## API documentation
 
 #### panache()
 Select the matched element from the document or context. It use selector method based on type of inserted selector.
