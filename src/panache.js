@@ -10,7 +10,7 @@
 
     /**
      * panache:
-     * Select element from the document or context.
+     * Select the matched element from the document or context.
      */
     panache = function (selector, context) {
         // Set select methods with RegExp:
@@ -88,7 +88,7 @@
 
     /**
      * animate:
-     * Deal with animation and rendering with requestAnimationFrame.
+     * Animate on scroll with requestAnimationFrame.
      * @reference: http://www.html5rocks.com/en/tutorials/speed/animations/
      */
     panache.animate = function (callback) {
