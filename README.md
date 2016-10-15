@@ -2,7 +2,7 @@
 Panache is a JavaScript helper library.
 
 ## Install
-Download Panache and add it to your project. Ensure you use the compiled file in the `dist` folder for better web performance. And that's it. You are ready to go! Start manipulate the DOM in an elegant and effective way, without throwing a bunch of prototype extensions into the DOM.
+Download Panache and add it to your project. Ensure you use the compiled file in the `dist` folder for a better web performance. And that's it. You are ready to go! Start manipulate the DOM in an elegant and effective way, without throwing a bunch of prototype extensions into the DOM.
 
 
 ```html
