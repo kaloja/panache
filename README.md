@@ -9,7 +9,7 @@ Panache is a JavaScript helper library.
 ### A
 - panache.addClass(element, className)
 - panache.after(element, html)
-- panache.animate(type, callback)
+- panache.animate(callback)
 - panache.append(element, target)
 - panache.attr(element, name, value)
 
