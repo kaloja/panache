@@ -30,6 +30,7 @@ panache(selector, context) // => collection, selected from context
 #### addClass()
 Add one or more classes to each element.
 
+
 ```js
 panache.addClass(element, name) // => collection
 ```
@@ -47,6 +48,8 @@ Animate on scroll with requestAnimationFrame.
 ```js
 panache.animate(callback) // => collection
 ```
+
+`callback => function`
 
 #### append()
 Insert the matched element to the end of each target.
@@ -102,6 +105,9 @@ Iterates over a collection with callback(index).
 ```js
 panache.each(collection, callback) // => collection
 ```
+
+`collection => array`
+`callback => function`
 
 #### empty()
 Remove all child nodes from the DOM.
@@ -182,7 +188,6 @@ panache.last(element) // => collection
 #### move()
 Move the matched element `up`, `down`, `right` or `left` in viewport with set `speed` on scroll. You can regulate the speed, higher number means lower speed on the movement. You must use `animate()` to execute the scroll event.
 
-`element => string`
 `direction => string`
 `speed => integer`
 
@@ -237,6 +242,8 @@ panache.removeClass(element, name) // => collection
 #### rotate()
 Rotate the matched element on scroll. You can regulate the `speed`, higher number means lower speed on the rotate. Negative speed number rotates the element anticlockwise. Positive speed number rotates the element clockwise. You must use `animate()` to execute the scroll event.
 
+`speed => integer`
+
 ```js
 panache.rotate(element, speed) // => collection
 ```
@@ -244,6 +251,8 @@ panache.rotate(element, speed) // => collection
 ### S
 #### scale()
 Scale the matched element on scroll. Negative zoom scales the element down. Positive zoom scales the element up. You must use `animate()` to execute the scroll event.
+
+`zoom => integer`
 
 ```js
 panache.scale(element, zoom) // => collection
