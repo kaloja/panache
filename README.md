@@ -52,7 +52,7 @@ panache.animate(callback) // => collection
 `callback => function`
 
 #### append()
-Insert the matched element to the end of each target.
+Insert the matched element to the end of the matched target.
 
 ```js
 panache.append(target, element) // => collection
@@ -212,7 +212,7 @@ panache.parent(element) // => collection
 ```
 
 #### prepend()
-Insert element to the beginning of each target.
+Insert element to the beginning of the matched target.
 
 ```js
 panache.prepend(target, element) // => collection

@@ -67,22 +67,14 @@
     /**
      * after:
      * Insert content after the matched element.
+     * @todo: Insert content to multiple matched elements.
      */
     panache.after = function (element, content) {
-        if (element.length > 0) {
-            return panache.each(element, function (i) {
-                if (typeof content === 'string') {
-                    element[i].insertAdjacentHTML('afterend', content);
-                } else if (content instanceof Node) {
-                    element[i].parentNode.insertBefore(content, element[i].nextSibling);
-                }
-            });
-        } else {
-            if (typeof content === 'string') {
-                element.insertAdjacentHTML('afterend', content);
-            } else if (content instanceof Node) {
-                element.parentNode.insertBefore(content, element.nextSibling);
-            }
+        if (typeof content === 'string') {
+            element.insertAdjacentHTML('afterend', content);
+        } else if (content instanceof Node) {
+            console.log(element.parentNode)
+            element.parentNode.insertBefore(content, element.nextSibling);
         }
     };
 
@@ -132,7 +124,8 @@
 
     /**
      * append:
-     * Insert the matched element to the end of each target.
+     * Insert the matched element to the end of the matched target.
+     * @todo: Insert content to multiple matched elements.
      */
     panache.append = function (target, element) {
         if (typeof element === 'string') {
@@ -162,22 +155,13 @@
     /**
      * before:
      * Insert content before the matched element.
+     * @todo: Insert content to multiple matched elements.
      */
     panache.before = function (element, content) {
-        if (element.length > 0) {
-            return panache.each(element, function (i) {
-                if (typeof content == 'string') {
-                    return element[i].insertAdjacentHTML('beforebegin', content);
-                } else if (content instanceof Node) {
-                    return element[i].parentNode.insertBefore(content, element[i]);
-                }
-            });
-        } else {
-            if (typeof content == 'string') {
-                return element.insertAdjacentHTML('beforebegin', content);
-            } else if (content instanceof Node) {
-                return element.parentNode.insertBefore(content, element);
-            }
+        if (typeof content == 'string') {
+            return element.insertAdjacentHTML('beforebegin', content);
+        } else if (content instanceof Node) {
+            return element.parentNode.insertBefore(content, element);
         }
     };
 
@@ -394,7 +378,8 @@
 
     /**
      * prepend:
-     * Insert element to the beginning of each target.
+     * Insert element to the beginning of the matched target.
+     * @todo: Insert content to multiple matched elements.
      */
     panache.prepend = function (target, element) {
         if (typeof element === 'string') {
