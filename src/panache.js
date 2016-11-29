@@ -217,7 +217,7 @@
      * Fade element with opacity value set from current scroll value and speed.
      * @dependencies: You must use animate() to execute the scroll event.
      */
-    panache.fade = function (element, speed = 10) {
+    panache.fade = function (element, speed) {
         var value = 1 + (-speed * panache.scrollValue() / panache.height());
         element.style.opacity = value;
         if (value <= 0) {
@@ -324,7 +324,7 @@
      * Define if the movement starts direct on scroll or first when the element is inview.
      * @dependencies: You must use animate() to execute the scroll event.
      */
-    panache.move = function (element, direction, speed, inview = false) {
+    panache.move = function (element, direction, speed, inview) {
         var value;
 
         if (inview == false) {
@@ -465,7 +465,7 @@
      * @dependencies: You must use animate() to execute the scroll event.
      * @todo: Consider to implement alternative rotate on y-axle and x-axle.
      */
-    panache.rotate = function (element, speed = 10) {
+    panache.rotate = function (element, speed) {
         var value = "rotate(" + (panache.scrollValue() * speed) + "deg)";
         element.style.transform = value;
     };
