@@ -321,7 +321,7 @@
      * move:
      * Move the matched element up, down, right or left in viewport with set speed on scroll.
      * You can regulate the speed, number higher than 1 increase the speed. To decrease the speed use a number less than 1, for instance 0.5.
-     * Define if the animation shall start direct on scroll or first when the element is inview.
+     * Define if the movement starts direct on scroll or first when the element is inview.
      * @dependencies: You must use animate() to execute the scroll event.
      */
     panache.move = function (element, direction, speed, inview = false) {
