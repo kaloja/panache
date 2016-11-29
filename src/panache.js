@@ -73,7 +73,6 @@
         if (typeof content === 'string') {
             element.insertAdjacentHTML('afterend', content);
         } else if (content instanceof Node) {
-            console.log(element.parentNode)
             element.parentNode.insertBefore(content, element.nextSibling);
         }
     };
@@ -168,7 +167,6 @@
     /**
      * children:
      * Get the children of each element.
-     * @todo: Option to filter by selector.
      */
     panache.children = function (element) {
         return element.children;
@@ -216,14 +214,14 @@
 
     /**
      * fade:
-     * Fade element from opacity value set from current scroll position.
+     * Fade element with opacity value set from current scroll value and speed.
      * @dependencies: You must use animate() to execute the scroll event.
      */
-    panache.fade = function (element) {
-        var value = 1 + (-1.5 * panache.scrollPosition() / panache.height());
+    panache.fade = function (element, speed = 10) {
+        var value = 1 + (-speed * panache.scrollValue() / panache.height());
         element.style.opacity = value;
         if (value <= 0) {
-            element.style.visibility = "none";
+            element.style.visibility = "hidden";
         } else {
             element.style.visibility = "visible";
         }
@@ -322,28 +320,53 @@
     /**
      * move:
      * Move the matched element up, down, right or left in viewport with set speed on scroll.
-     * You can regulate the speed, higher number means lower speed on the movement.
+     * You can regulate the speed, number higher than 1 increase the speed. To decrease the speed use a number less than 1, for instance 0.5.
+     * Define if the animation shall start direct on scroll or first when the element is inview.
      * @dependencies: You must use animate() to execute the scroll event.
      */
-    panache.move = function (element, direction, speed) {
+    panache.move = function (element, direction, speed, inview = false) {
         var value;
-        switch (direction) {
-            case 'up':
-                direction = -1;
-                value = "translate3d(0, " + (direction * panache.scrollPosition() / speed) + "px, 0)";
-                break;
-            case 'down':
-                direction = 1;
-                value = "translate3d(0, " + (direction * panache.scrollPosition() / speed) + "px, 0)";
-                break;
-            case 'right':
-                direction = 1;
-                value = "translate3d(" + (direction * panache.scrollPosition() / speed) + "px, 0, 0)";
-                break;
-            case 'left':
-                direction = -1;
-                value = "translate3d(" + (direction * panache.scrollPosition() / speed) + "px, 0, 0)";
-                break;
+
+        if (inview == false) {
+            switch (direction) {
+                case 'up':
+                    direction = -1;
+                    value = "translate3d(0, " + (direction * panache.scrollValue() * speed) + "%, 0)";
+                    break;
+                case 'down':
+                    direction = 1;
+                    value = "translate3d(0, " + (direction * panache.scrollValue() * speed) + "%, 0)";
+                    break;
+                case 'right':
+                    direction = 1;
+                    value = "translate3d(" + (direction * panache.scrollValue() * speed) + "%, 0, 0)";
+                    break;
+                case 'left':
+                    direction = -1;
+                    value = "translate3d(" + (direction * panache.scrollValue() * speed) + "%, 0, 0)";
+                    break;
+            }
+        } else if (inview == true) {
+            if (panache.inview(element) == true) {
+                switch (direction) {
+                    case 'up':
+                        direction = -1;
+                        value = "translate3d(0, " + (direction * panache.scrollValue() * speed) + "%, 0)";
+                        break;
+                    case 'down':
+                        direction = 1;
+                        value = "translate3d(0, " + (direction * panache.scrollValue() * speed) + "%, 0)";
+                        break;
+                    case 'right':
+                        direction = 1;
+                        value = "translate3d(" + (direction * panache.scrollValue() * speed) + "%, 0, 0)";
+                        break;
+                    case 'left':
+                        direction = -1;
+                        value = "translate3d(" + (direction * panache.scrollValue() * speed) + "%, 0, 0)";
+                        break;
+                }
+            }
         }
         element.style.transform = value;
     };
@@ -363,12 +386,10 @@
     /**
      * parent:
      * Get the parent of each element in the current set of matched elements.
-     * @todo: Optionally filtered by a selector.
      */
     panache.parent = function (element) {
         if (element.length > 0) {
             return panache.each(element, function (i) {
-                console.log(element[i].parentNode)
                 element[i].parentNode;
             });
         } else {
@@ -396,8 +417,7 @@
     panache.ready = function (handler) {
         if (typeof handler !== 'function') {
             return;
-        }
-        if (document.readyState === 'complete') {
+        } else if (document.readyState === 'complete') {
             return handler();
         }
         document.addEventListener('DOMContentLoaded', handler, false);
@@ -440,13 +460,13 @@
     /**
      * rotate:
      * Rotate the matched element on scroll.
-     * You can regulate the speed, higher number means lower speed on the rotate.
+     * You can regulate the speed, number higher than 1 increase the speed. To decrease the speed use a number less than 1, for instance 0.5.
      * Negative speed number rotates the element anticlockwise. Positive speed number rotates the element clockwise.
      * @dependencies: You must use animate() to execute the scroll event.
      * @todo: Consider to implement alternative rotate on y-axle and x-axle.
      */
-    panache.rotate = function (element, speed) {
-        var value = "rotate(" + (panache.scrollPosition() / speed) + "deg)";
+    panache.rotate = function (element, speed = 10) {
+        var value = "rotate(" + (panache.scrollValue() * speed) + "deg)";
         element.style.transform = value;
     };
 
@@ -456,7 +476,7 @@
      * @dependencies: You must use animate() to execute the scroll event.
      */
     panache.scale = function (element, zoom) {
-        var value = "scale(" + (1 + (zoom * panache.scrollPosition() / panache.height())) + ")";
+        var value = "scale(" + (1 + (zoom * panache.scrollValue() / panache.height())) + ")";
         element.style.transform = value;
     };
 
@@ -471,6 +491,19 @@
             return document.documentElement.scrollTop;
         }
     };
+
+    /**
+     * scrollValue:
+     * Get the scrolled part in percent.
+     */
+    panache.scrollValue = function () {
+        var scrollTop = window.pageYOffset,
+            scrollHeight = document.body.scrollHeight,
+            windowHeight = panache.height(),
+            scrollValue = (scrollTop / (scrollHeight - windowHeight)) * 100;
+
+        return scrollValue;
+    }
 
     /**
      * show:
@@ -489,7 +522,6 @@
     /**
      * siblings:
      * Get the siblings of the matched element.
-     * @todo: Optionally filtered by a selector.
      */
     panache.siblings = function (element) {
         return Array.prototype.filter.call(element.parentNode.children, function(child) {

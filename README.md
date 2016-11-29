@@ -118,10 +118,10 @@ panache.empty(element) // => collection
 
 ### F
 #### fade()
-Fade element from opacity value set from current scroll position. You must use `animate()` to execute the scroll event.
+Fade element with opacity value set from current scroll value and speed. You must use `animate()` to execute the scroll event.
 
 ```js
-panache.fade(element) // => collection
+panache.fade(element, speed) // => collection
 ```
 
 #### find()
@@ -186,13 +186,13 @@ panache.last(element) // => collection
 
 ### M
 #### move()
-Move the matched element `up`, `down`, `right` or `left` in viewport with set `speed` on scroll. You can regulate the speed, higher number means lower speed on the movement. You must use `animate()` to execute the scroll event.
+Move the matched element `up`, `down`, `right` or `left` in viewport with set `speed` on scroll. You can regulate the speed, number higher than 1 increase the speed. To decrease the speed use a number less than 1, for instance 0.5. You must use `animate()` to execute the scroll event.
 
 `direction => string`
 `speed => integer`
 
 ```js
-panache.move(element, direction, speed) // => collection
+panache.move(element, direction, speed, inview) // => collection
 ```
 
 ### O
@@ -240,7 +240,7 @@ panache.removeClass(element, name) // => collection
 ```
 
 #### rotate()
-Rotate the matched element on scroll. You can regulate the `speed`, higher number means lower speed on the rotate. Negative speed number rotates the element anticlockwise. Positive speed number rotates the element clockwise. You must use `animate()` to execute the scroll event.
+Rotate the matched element on scroll. You can regulate the `speed`, You can regulate the speed, number higher than 1 increase the speed. To decrease the speed use a number less than 1, for instance 0.5. Negative speed number rotates the element anticlockwise. Positive speed number rotates the element clockwise. You must use `animate()` to execute the scroll event.
 
 `speed => integer`
 
@@ -263,6 +263,13 @@ Get the scroll top position.
 
 ```js
 panache.scrollPosition() // => integer
+```
+
+#### scrollValue()
+Get the scrolled part in percent.
+
+```js
+panache.scrollValue() // => integer
 ```
 
 #### show()
@@ -298,26 +305,3 @@ panache.width() // => integer
 ## Contribute
 If you want to improve Panache, feel free to contribute. I will appreciate it, cooperation gives better results. 
 You can do this by create a pull request.
-
-## License
-The MIT License
-
-Copyright © 2016 Mattias Haal
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
