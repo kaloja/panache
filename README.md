@@ -186,7 +186,7 @@ panache.last(element) // => collection
 
 ### M
 #### move()
-Move the matched element `up`, `down`, `right` or `left` in viewport with set `speed` on scroll. You can regulate the speed, number higher than 1 increase the speed. To decrease the speed use a number less than 1, for instance 0.5. Define if the movement starts direct on scroll or first when the element is inview. You must use `animate()` to execute the scroll event.
+Move the matched element `up`, `down`, `right` or `left` in viewport with set `speed` on scroll. You can regulate the speed, number higher than `1` increase the speed. To decrease the speed use a number less than `1`, for instance `0.5`. Define if the movement starts direct on scroll or first when the element is inview. You must use `animate()` to execute the scroll event.
 
 `direction => string`
 `speed => integer`
@@ -241,7 +241,7 @@ panache.removeClass(element, name) // => collection
 ```
 
 #### rotate()
-Rotate the matched element on scroll. You can regulate the `speed`, You can regulate the speed, number higher than 1 increase the speed. To decrease the speed use a number less than 1, for instance 0.5. Negative speed number rotates the element anticlockwise. Positive speed number rotates the element clockwise. You must use `animate()` to execute the scroll event.
+Rotate the matched element on scroll. You can regulate the `speed`, You can regulate the speed, number higher than `1` increase the speed. To decrease the speed use a number less than `1`, for instance `0.5`. Negative speed number rotates the element anticlockwise. Positive speed number rotates the element clockwise. You must use `animate()` to execute the scroll event.
 
 `speed => integer`
 
