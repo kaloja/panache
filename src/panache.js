@@ -78,6 +78,41 @@
     };
 
     /**
+     * ajax:
+     * Perform an asynchronous HTTP request.
+     */
+    panache.ajax = function (url, callback, method, async, data) {
+        var method = method || 'GET', // Default to GET.
+            async = async || true, // Default to async mode,
+            request = null;
+
+        if (XMLHttpRequest) {
+            request = new XMLHttpRequest();
+        } else {
+            request = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 || request.readyState == 'complete') {
+                if (request.status == 200) {
+                    callback(request);
+                } else {
+                    console.log('Something went wrong with the server request.');
+                    return;
+                }
+            }
+        }
+
+        request.open(method, url, async);
+
+        if (data) {
+            request.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+        }
+
+        request.send(data);
+    };
+
+    /**
      * animate:
      * Animate on scroll with requestAnimationFrame.
      * @reference: http://www.html5rocks.com/en/tutorials/speed/animations/
@@ -218,7 +253,7 @@
      * @dependencies: You must use animate() to execute the scroll event.
      */
     panache.fade = function (element, speed) {
-        var value = 1 + (-speed * panache.scrollValue() / panache.height());
+        var value = 1 + (-speed * panache.scrollPosition() / 100);
         element.style.opacity = value;
         if (value <= 0) {
             element.style.visibility = "hidden";
@@ -331,19 +366,19 @@
             switch (direction) {
                 case 'up':
                     direction = -1;
-                    value = "translate3d(0, " + (direction * panache.scrollValue() * speed) + "%, 0)";
+                    value = "translate3d(0, " + (direction * panache.scrollPosition() * speed) + "%, 0)";
                     break;
                 case 'down':
                     direction = 1;
-                    value = "translate3d(0, " + (direction * panache.scrollValue() * speed) + "%, 0)";
+                    value = "translate3d(0, " + (direction * panache.scrollPosition() * speed) + "%, 0)";
                     break;
                 case 'right':
                     direction = 1;
-                    value = "translate3d(" + (direction * panache.scrollValue() * speed) + "%, 0, 0)";
+                    value = "translate3d(" + (direction * panache.scrollPosition() * speed) + "%, 0, 0)";
                     break;
                 case 'left':
                     direction = -1;
-                    value = "translate3d(" + (direction * panache.scrollValue() * speed) + "%, 0, 0)";
+                    value = "translate3d(" + (direction * panache.scrollPosition() * speed) + "%, 0, 0)";
                     break;
             }
         } else if (inview == true) {
@@ -351,19 +386,19 @@
                 switch (direction) {
                     case 'up':
                         direction = -1;
-                        value = "translate3d(0, " + (direction * panache.scrollValue() * speed) + "%, 0)";
+                        value = "translate3d(0, " + (direction * panache.scrollPosition() * speed) + "%, 0)";
                         break;
                     case 'down':
                         direction = 1;
-                        value = "translate3d(0, " + (direction * panache.scrollValue() * speed) + "%, 0)";
+                        value = "translate3d(0, " + (direction * panache.scrollPosition() * speed) + "%, 0)";
                         break;
                     case 'right':
                         direction = 1;
-                        value = "translate3d(" + (direction * panache.scrollValue() * speed) + "%, 0, 0)";
+                        value = "translate3d(" + (direction * panache.scrollPosition() * speed) + "%, 0, 0)";
                         break;
                     case 'left':
                         direction = -1;
-                        value = "translate3d(" + (direction * panache.scrollValue() * speed) + "%, 0, 0)";
+                        value = "translate3d(" + (direction * panache.scrollPosition() * speed) + "%, 0, 0)";
                         break;
                 }
             }
@@ -475,8 +510,13 @@
      * Scale the matched element on scroll. Negative zoom scales the element down. Positive zoom scales the element up.
      * @dependencies: You must use animate() to execute the scroll event.
      */
+    // panache.scale = function (element, zoom) {
+    //     var value = "scale(" + (1 + (zoom * panache.scrollValue() / panache.height())) + ")";
+    //     element.style.transform = value;
+    // };
+
     panache.scale = function (element, zoom) {
-        var value = "scale(" + (1 + (zoom * panache.scrollValue() / panache.height())) + ")";
+        var value = "scale(" + (1 + (zoom * panache.scrollPosition()) / 100) + ")";
         element.style.transform = value;
     };
 

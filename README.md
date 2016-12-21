@@ -42,6 +42,13 @@ Insert content after the matched element.
 panache.after(element, content) // => collection
 ```
 
+#### ajax()
+Perform an asynchronous HTTP request.
+
+```js
+panache.ajax(url, callback, method, async, data)
+```
+
 #### animate()
 Animate on scroll with requestAnimationFrame.
 
