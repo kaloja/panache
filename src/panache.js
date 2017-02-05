@@ -256,20 +256,6 @@
 	};
 
 	/**
-	 * height:
-	 * Get the height of the viewport.
-	 */
-	panache.height = function () {
-		if (typeof window.innerHeight !== undefined) {
-			return window.innerHeight;
-		} else if (typeof document.documentElement !== undefined) {
-			return document.documentElement.clientHeight;
-		} else {
-			return document.body.clientHeight;
-		}
-	};
-
-	/**
 	 * hide:
 	 * Hide the matched elements.
 	 */
@@ -460,7 +446,7 @@
 	panache.scrollValue = function () {
 		var scrollTop = window.pageYOffset,
 			scrollHeight = document.body.scrollHeight,
-			windowHeight = panache.height(),
+			windowHeight = window.innerHeight,
 			scrollValue = (scrollTop / (scrollHeight - windowHeight)) * 100;
 
 		return scrollValue;
@@ -506,20 +492,6 @@
 				}
 			}
 		});
-	};
-
-	/**
-	 * width:
-	 * Get the width of the viewport.
-	 */
-	panache.width = function () {
-		if (typeof window.innerWidth !== undefined) {
-			return window.innerWidth;
-		} else if (typeof document.documentElement !== undefined) {
-			return document.documentElement.clientWidth;
-		} else {
-			return document.body.clientWidth;
-		}
 	};
 
 	// FOR INTERNAL USE ONLY:

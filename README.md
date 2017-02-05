@@ -123,13 +123,6 @@ Determine if the matched element has the given class.
 panache.hasClass(element, name) // => boolean
 ```
 
-#### height()
-Get the height of the viewport.
-
-```js
-panache.height() // => integer
-```
-
 #### hide()
 Hide the matched elements.
 
@@ -261,14 +254,6 @@ Add or remove one or more classes from each element.
 
 ```js
 panache.toggleClass(element, name) // => collection
-```
-
-### W
-#### width()
-Get the width of the viewport.
-
-```js
-panache.width() // => integer
 ```
 
 ## Contribute
