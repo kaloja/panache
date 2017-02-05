@@ -16,8 +16,7 @@
 		// Set select methods with RegExp:
 		var idMatch = (/^\#[\w\-]+$/),
 			  classMatch = (/^\.[\w\-]+$/),
-			  tagMatch = (/^\w+$/),
-			  htmlMatch = (/^</);
+			  tagMatch = (/^\w+$/);
 
 		if (context) {
 			if (idMatch.test(selector)) {
@@ -26,8 +25,6 @@
 				return context.getElementsByClassName(selector.substr(1));
 			} else if (tagMatch.test(selector)) {
 				return context.getElementsByTagName(selector);
-			} else if (htmlMatch.test(selector)) {
-				return panache.createNode(selector);
 			} else {
 				return context.querySelectorAll(selector);
 			}
@@ -38,8 +35,6 @@
 				return document.getElementsByClassName(selector.substr(1));
 			} else if (tagMatch.test(selector)) {
 				return document.getElementsByTagName(selector);
-			} else if (htmlMatch.test(selector)) {
-				return panache.createNode(selector);
 			} else {
 				return document.querySelectorAll(selector);
 			}
@@ -495,12 +490,6 @@
 	};
 
 	// FOR INTERNAL USE ONLY:
-	panache.createNode = function (html) {
-		var div = document.createElement('div');
-		div.innerHTML = html;
-		return div.firstChild;
-	};
-
 	panache.forEach = function (items, callback) {
 		if (Object.prototype.toString.call(items) !== '[object Array]') {
 			items = items.split(' ');
