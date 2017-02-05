@@ -82,8 +82,8 @@
 	 */
 	panache.ajax = function (url, callback, method, async, data) {
 		var method = method || 'GET', // Default to GET
-			async = async || true, // Default to async mode
-			request = null;
+			  async = async || true, // Default to async mode
+			  request = null;
 
 		if (XMLHttpRequest) {
 			request = new XMLHttpRequest();
@@ -237,18 +237,10 @@
 		var value = 1 + (-speed * panache.scrollPosition() / 100);
 		element.style.opacity = value;
 		if (value <= 0) {
-			element.style.visibility = "hidden";
+			element.style.visibility = 'hidden';
 		} else {
-			element.style.visibility = "visible";
+			element.style.visibility = 'visible';
 		}
-	};
-
-	/**
-	 * first:
-	 * Get the first matched element.
-	 */
-	panache.first = function (element) {
-		return element[0];
 	};
 
 	/**

@@ -115,13 +115,6 @@ Fade element with opacity value set from current scroll value and speed. You mus
 panache.fade(element, speed) // => collection
 ```
 
-#### first()
-Get the first matched element.
-
-```js
-panache.first(element) // => collection
-```
-
 ### H
 #### hasClass()
 Determine if the matched element has the given class.
