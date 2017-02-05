@@ -293,23 +293,26 @@
 	 * @dependencies: You must use animate() to execute the scroll event.
 	 */
 	panache.move = function (element, direction, speed) {
-		var value;
+		var value,
+		    direction = direction || 'up',
+		    speed = speed || 0.25;
+
 		switch (direction) {
 			case 'up':
 				direction = -1;
-				value = "translate3d(0, " + (direction * panache.scrollPosition() * speed) + "%, 0)";
+				value = 'translate3d(0, ' + (Math.floor(direction * panache.scrollPosition() * speed)) + 'px, 0)';
 				break;
 			case 'down':
 				direction = 1;
-				value = "translate3d(0, " + (direction * panache.scrollPosition() * speed) + "%, 0)";
+				value = 'translate3d(0, ' + (Math.floor(direction * panache.scrollPosition() * speed)) + 'px, 0)';
 				break;
 			case 'right':
 				direction = 1;
-				value = "translate3d(" + (direction * panache.scrollPosition() * speed) + "%, 0, 0)";
+				value = 'translate3d(' + (Math.floor(direction * panache.scrollPosition() * speed)) + 'px, 0, 0)';
 				break;
 			case 'left':
 				direction = -1;
-				value = "translate3d(" + (direction * panache.scrollPosition() * speed) + "%, 0, 0)";
+				value = 'translate3d(' + (Math.floor(direction * panache.scrollPosition() * speed)) + 'px, 0, 0)';
 				break;
 		}
 		element.style.transform = value;
@@ -408,7 +411,7 @@
 	 * @dependencies: You must use animate() to execute the scroll event.
 	 */
 	panache.rotate = function (element, speed) {
-		var value = "rotate(" + (panache.scrollPosition() * speed) + "deg)";
+		var value = 'rotate(' + (panache.scrollPosition() * speed) + 'deg)';
 		element.style.transform = value;
 	};
 
@@ -418,7 +421,7 @@
 	 * @dependencies: You must use animate() to execute the scroll event.
 	 */
 	panache.scale = function (element, zoom) {
-		var value = "scale(" + (1 + (zoom * panache.scrollPosition()) / 100) + ")";
+		var value = 'scale(' + (1 + (zoom * panache.scrollPosition()) / 100) + ')';
 		element.style.transform = value;
 	};
 
