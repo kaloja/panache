@@ -197,14 +197,6 @@
 	};
 
 	/**
-	 * children:
-	 * Get the children of each element.
-	 */
-	panache.children = function (element) {
-		return element.children;
-	};
-
-	/**
 	 * clone:
 	 * Create a copy of the matched element.
 	 */

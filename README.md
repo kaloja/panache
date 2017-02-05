@@ -82,13 +82,6 @@ panache.before(element, content) // => collection
 ```
 
 ### C
-#### children()
-Get the children of each element.
-
-```js
-panache.children(element) // => collection
-```
-
 #### clone()
 Create a copy of the matched element.
 
