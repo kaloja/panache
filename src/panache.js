@@ -292,19 +292,19 @@
 		switch (direction) {
 			case 'up':
 				direction = -1;
-				value = 'translate3d(0, ' + (Math.floor(direction * panache.scrollPosition() * speed)) + 'px, 0)';
+				value = 'translate3d(0, ' + (Math.round(direction * panache.scrollPosition() * speed)) + 'px, 0)';
 				break;
 			case 'down':
 				direction = 1;
-				value = 'translate3d(0, ' + (Math.floor(direction * panache.scrollPosition() * speed)) + 'px, 0)';
+				value = 'translate3d(0, ' + (Math.round(direction * panache.scrollPosition() * speed)) + 'px, 0)';
 				break;
 			case 'right':
 				direction = 1;
-				value = 'translate3d(' + (Math.floor(direction * panache.scrollPosition() * speed)) + 'px, 0, 0)';
+				value = 'translate3d(' + (Math.round(direction * panache.scrollPosition() * speed)) + 'px, 0, 0)';
 				break;
 			case 'left':
 				direction = -1;
-				value = 'translate3d(' + (Math.floor(direction * panache.scrollPosition() * speed)) + 'px, 0, 0)';
+				value = 'translate3d(' + (Math.round(direction * panache.scrollPosition() * speed)) + 'px, 0, 0)';
 				break;
 		}
 		element.style.transform = value;
