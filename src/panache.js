@@ -95,14 +95,12 @@
 					return;
 				}
 			}
-		}
+		};
 
 		request.open(method, url, async);
-
 		if (data) {
 			request.setRequestHeader('Content-type','application/x-www-form-urlencoded');
 		}
-
 		request.send(data);
 	};
 
@@ -113,18 +111,20 @@
 	 */
 	panache.animate = function (callback) {
 		var animate = window.requestAnimationFrame,
-			ticking = false,
-			lastTime = 0;
+			  ticking = false,
+			  lastTime = 0;
 
 		function onScroll() {
 			requestTick();
 		};
+
 		function requestTick() {
 			if (!ticking) {
 				animate(update);
 			}
 			ticking = true;
 		};
+
 		function update() {
 			if (ticking) {
 				callback();
@@ -132,6 +132,7 @@
 			// Reset the tick, so we can capture the next onScroll:
 			ticking = false;
 		};
+
 		panache.on('scroll', window, onScroll);
 
 		// Polyfill for requestAnimationFrame:
@@ -293,7 +294,6 @@
 	 */
 	panache.move = function (element, direction, speed) {
 		var value;
-
 		switch (direction) {
 			case 'up':
 				direction = -1;
@@ -440,9 +440,9 @@
 	 */
 	panache.scrollValue = function () {
 		var scrollTop = window.pageYOffset,
-			scrollHeight = document.body.scrollHeight,
-			windowHeight = window.innerHeight,
-			scrollValue = (scrollTop / (scrollHeight - windowHeight)) * 100;
+			  scrollHeight = document.body.scrollHeight,
+			  windowHeight = window.innerHeight,
+			  scrollValue = (scrollTop / (scrollHeight - windowHeight)) * 100;
 
 		return scrollValue;
 	}
