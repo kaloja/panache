@@ -136,17 +136,9 @@
 		panache.on('scroll', window, onScroll);
 
 		// Polyfill for requestAnimationFrame:
-		// @reference: https://gist.github.com/paulirish/1579671
 		if (!window.requestAnimationFrame) {
 			window.requestAnimationFrame = function (callback) {
-				var currentTime = new Date().getTime(),
-					timeToCall = Math.max(0, 16 - (currentTime - lastTime));
-
-				var id = window.setTimeout(function () {
-					callback(currentTime + timeToCall);
-				}, timeToCall);
-				lastTime = currentTime + timeToCall;
-				return id;
+				setTimeout(callback, 1000 / 60);
 			};
 		};
 	};
