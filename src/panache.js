@@ -408,7 +408,7 @@
 	 * @dependencies: You must use animate() to execute the scroll event.
 	 */
 	panache.rotate = function (element, speed) {
-		var value = "rotate(" + (panache.scrollValue() * speed) + "deg)";
+		var value = "rotate(" + (panache.scrollPosition() * speed) + "deg)";
 		element.style.transform = value;
 	};
 
