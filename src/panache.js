@@ -205,14 +205,6 @@
 	};
 
 	/**
-	 * data:
-	 * Get data associated with the matched element, or set data for the matched element.
-	 */
-	panache.data = function (element, name, value) {
-		return panache.attr(element, name, value);
-	};
-
-	/**
 	 * each:
 	 * Iterates over a collection with callback(index).
 	 */

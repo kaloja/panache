@@ -89,15 +89,6 @@ Create a copy of the matched element.
 panache.clone(element) // => collection
 ```
 
-### D
-#### data()
-Get data associated with the matched element, or set data for the matched element.
-
-```js
-panache.data(element, name) // => data name
-panache.data(element, name, value) // => collection
-```
-
 ### E
 #### each()
 Iterates over a collection with callback(index).
