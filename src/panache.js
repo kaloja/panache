@@ -252,14 +252,6 @@
 	};
 
 	/**
-	 * find:
-	 * Get the descendants of each matched element, filtered by a selector.
-	 */
-	panache.find = function (element, selector) {
-		return element.querySelectorAll(selector);
-	};
-
-	/**
 	 * first:
 	 * Get the first matched element.
 	 */

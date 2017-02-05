@@ -124,13 +124,6 @@ Fade element with opacity value set from current scroll value and speed. You mus
 panache.fade(element, speed) // => collection
 ```
 
-#### find()
-Get the descendants of each matched element, filtered by a selector.
-
-```js
-panache.find(element, selector) // => collection
-```
-
 #### first()
 Get the first matched element.
 
