@@ -15,9 +15,9 @@
 	panache = function (selector, context) {
 		// Set select methods with RegExp:
 		var idMatch = (/^\#[\w\-]+$/),
-			classMatch = (/^\.[\w\-]+$/),
-			tagMatch = (/^\w+$/),
-			htmlMatch = (/^</);
+			  classMatch = (/^\.[\w\-]+$/),
+			  tagMatch = (/^\w+$/),
+			  htmlMatch = (/^</);
 
 		if (context) {
 			if (idMatch.test(selector)) {
@@ -289,19 +289,6 @@
 		} else {
 			return element.style.display = 'none';
 		}
-	};
-
-	/**
-	 * html:
-	 * Get the HTML content of the element or set the HTML content for each element in the collection.
-	 */
-	panache.html = function (element, html) {
-		if (typeof html !== 'string') {
-			return element.innerHTML;
-		}
-		return panache.each(element, function (i) {
-			element[i].innerHTML = html;
-		});
 	};
 
 	/**

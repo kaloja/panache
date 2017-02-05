@@ -144,14 +144,6 @@ Hide the matched elements.
 panache.hide(element) // => collection
 ```
 
-#### html()
-Get the HTML content of the element or set the HTML content for each element in the collection.
-
-```js
-panache.html(element) // => html text
-panache.html(element, html) // => html text
-```
-
 ### I
 #### inview()
 Determine if an element is in viewport.
