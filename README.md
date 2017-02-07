@@ -49,6 +49,9 @@ Perform an asynchronous HTTP request.
 panache.ajax(url, callback, method, async, data)
 ```
 
+`callback => function`
+
+
 #### animate()
 Animate on scroll with requestAnimationFrame.
 
