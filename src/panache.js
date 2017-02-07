@@ -454,8 +454,10 @@
 	/**
 	 * rotate:
 	 * Rotate the matched element on scroll.
-	 * You can regulate the speed, number higher than 1 increase the speed. To decrease the speed use a number less than 1, for instance 0.5.
-	 * Negative speed number rotates the element anticlockwise. Positive speed number rotates the element clockwise.
+	 * You can regulate the speed, number higher than 1 increase the speed. To
+	 * decrease the speed use a number less than 1, for instance 0.5. Negative
+	 * speed number rotates the element anticlockwise. Positive speed number
+	 * rotates the element clockwise.
 	 * @dependencies: You must use animate() to execute the scroll event.
 	 */
 	panache.rotate = function (element, speed) {
@@ -465,7 +467,8 @@
 
 	/**
 	 * scale:
-	 * Scale the matched element on scroll. Negative zoom scales the element down. Positive zoom scales the element up.
+	 * Scale the matched element on scroll. Negative zoom scales the element
+	 * down. Positive zoom scales the element up.
 	 * @dependencies: You must use animate() to execute the scroll event.
 	 */
 	panache.scale = function (element, zoom) {
