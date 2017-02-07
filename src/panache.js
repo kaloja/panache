@@ -301,10 +301,8 @@
 		var clamp = function(number, min, max) {
 			return (number <= min) ? min : ((number >= max) ? max : number);
 		};
-
 		// If someone tries to crank the speed, limit them to -5/+10:
 		speed = clamp(speed, -5, 10);
-
 		// Set scroll position if the center mode is in use:
 		if (center) {
 			if (window.pageYOffset !== undefined) {
@@ -313,11 +311,9 @@
 				positionY = panache.scrollPosition();
 			}
 		}
-
 		blockTop = positionY + element.getBoundingClientRect().top;
 		blockHeight = element.clientHeight || element.offsetHeight || element.scrollHeight;
 		screenY = window.innerHeight;
-
 		if (center) {
 			percentage = 0.5;
 		} else {
@@ -354,13 +350,10 @@
 
 		// Run setPosition() to receive the latest positionY value:
  		setPosition();
-
 		// After the latest positionY value is generated, recalculate the percentage value:
 		percentage = ((positionY - blockTop + screenY) / (blockHeight + screenY));
-
 		// Generate the position value:
 		position = updatePosition(percentage, speed) - base;
-
 		// Move the element:
     var value = 'translate3d(0, ' + position + 'px' + ', 0)';
     element.style.transform = value;
