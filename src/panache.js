@@ -313,7 +313,7 @@
 			}
 		}
 
-		// Measure the canvas and the element position in it:
+		// Measure the canvas and the element in it:
 		blockTop = positionY + element.getBoundingClientRect().top;
 		blockHeight = element.clientHeight || element.offsetHeight || element.scrollHeight;
 		screenY = window.innerHeight;
