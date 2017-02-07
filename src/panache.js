@@ -111,29 +111,27 @@
 	 */
 	panache.animate = function (callback) {
 		var animate = window.requestAnimationFrame,
-				ticking = false,
-				lastTime = 0;
+				ticking = false;
 
+		// Callback for our scroll event:
 		function onScroll() {
-			requestTick();
-		};
-
-		function requestTick() {
 			if (!ticking) {
 				animate(update);
 				ticking = true;
 			}
-
 		};
 
+		// Our animation callback:
 		function update() {
 			if (ticking) {
 				callback();
 			}
-			// Reset the tick, so we can capture the next onScroll:
+
+			// Reset the tick, so we can capture the next scroll event:
 			ticking = false;
 		};
 
+		// Listen for scroll events:
 		panache.on('scroll', window, onScroll);
 
 		// Polyfill for requestAnimationFrame:
@@ -288,8 +286,8 @@
 	 * @dependencies: You must use animate() to execute the scroll event.
 	 */
 	panache.move = function (element, speed, center) {
-		var center = center || false,
-		    speed = speed || -2,
+		var center = center || false, // Default to false
+		    speed = speed || -2, // Default speed is -2
 		    position = 0,
 		    positionY = 0,
 		    screenY = 0,
@@ -301,6 +299,7 @@
 		var clamp = function(number, min, max) {
 			return (number <= min) ? min : ((number >= max) ? max : number);
 		};
+
 		// If someone tries to crank the speed, limit them to -5/+10:
 		speed = clamp(speed, -5, 10);
 
@@ -313,11 +312,12 @@
 			}
 		}
 
-		// Measure the canvas and the element in it:
+		// Measure the canvas and the matched element in it:
 		blockTop = positionY + element.getBoundingClientRect().top;
 		blockHeight = element.clientHeight || element.offsetHeight || element.scrollHeight;
 		screenY = window.innerHeight;
 
+		// The percentage is a part used in the calculation of the scroll position:
 		if (center) {
 			percentage = 0.5;
 		} else {
@@ -351,10 +351,13 @@
 
 		// Run setPosition() to receive the latest positionY value:
  		setPosition();
+
 		// After the latest positionY value is generated, recalculate the percentage value:
 		percentage = ((positionY - blockTop + screenY) / (blockHeight + screenY));
+
 		// Generate the position value:
 		position = updatePosition(percentage, speed) - base;
+
 		// Move the element:
     var value = 'translate3d(0, ' + position + 'px' + ', 0)';
     element.style.transform = value;
