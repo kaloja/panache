@@ -45,21 +45,20 @@ panache.after(element, content) // => collection
 #### ajax()
 Perform an asynchronous HTTP request.
 
+`callback => function`
+
 ```js
 panache.ajax(url, callback, method, async, data)
 ```
 
-`callback => function`
-
-
 #### animate()
 Animate on scroll with requestAnimationFrame.
+
+`callback => function`
 
 ```js
 panache.animate(callback) // => collection
 ```
-
-`callback => function`
 
 #### append()
 Insert the matched element to the end of the matched target.
@@ -72,7 +71,7 @@ panache.append(target, element) // => collection
 Get the value of an attribute from the matched element or set one attribute for matched element.
 
 ```js
-panache.attr(element, name) // => attribute name
+panache.attr(element, name) // => attribute value
 panache.attr(element, name, value) // => collection
 ```
 
@@ -96,12 +95,12 @@ panache.clone(element) // => collection
 #### each()
 Iterates over a collection with callback(index).
 
+`collection => array`
+`callback => function`
+
 ```js
 panache.each(collection, callback) // => collection
 ```
-
-`collection => array`
-`callback => function`
 
 #### empty()
 Remove all child nodes from the DOM.
@@ -114,11 +113,11 @@ panache.empty(element) // => collection
 #### fade()
 Fade element with opacity value set from current scroll value and speed. You must use `animate()` to execute the scroll event.
 
+`speed => integer`
+
 ```js
 panache.fade(element, speed) // => collection
 ```
-
-`speed => integer`
 
 ### H
 #### hasClass()
@@ -166,11 +165,11 @@ panache.move(element, speed, center) // => collection
 #### on()
 Attach an event handler function for one or more events to the selected elements.
 
+`handler => function`
+
 ```js
 panache.on(event, element, handler) // => collection
 ```
-
-`handler => function`
 
 ### P
 #### parent()
@@ -191,11 +190,11 @@ panache.prepend(target, element) // => collection
 #### ready()
 Wait until the DOM is ready before executing code.
 
+`handler => function`
+
 ```js
 panache.ready(handler) // => collection
 ```
-
-`handler => function`
 
 #### remove()
 Remove the set of matched elements from the DOM.
