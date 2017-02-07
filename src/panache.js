@@ -15,8 +15,8 @@
 	panache = function (selector, context) {
 		// Set select methods with RegExp:
 		var idMatch = (/^\#[\w\-]+$/),
-			  classMatch = (/^\.[\w\-]+$/),
-			  tagMatch = (/^\w+$/);
+				classMatch = (/^\.[\w\-]+$/),
+				tagMatch = (/^\w+$/);
 
 		if (context) {
 			if (idMatch.test(selector)) {
@@ -77,8 +77,8 @@
 	 */
 	panache.ajax = function (url, callback, method, async, data) {
 		var method = method || 'GET', // Default to GET
-			  async = async || true, // Default to async mode
-			  request = null;
+				async = async || true, // Default to async mode
+				request = null;
 
 		if (XMLHttpRequest) {
 			request = new XMLHttpRequest();
@@ -111,8 +111,8 @@
 	 */
 	panache.animate = function (callback) {
 		var animate = window.requestAnimationFrame,
-			  ticking = false,
-			  lastTime = 0;
+				ticking = false,
+				lastTime = 0;
 
 		function onScroll() {
 			requestTick();
@@ -121,8 +121,9 @@
 		function requestTick() {
 			if (!ticking) {
 				animate(update);
+				ticking = true;
 			}
-			ticking = true;
+
 		};
 
 		function update() {
@@ -157,7 +158,8 @@
 
 	/**
 	 * attr:
-	 * Get the value of an attribute from the matched element or set one attribute for matched element.
+	 * Get the value of an attribute from the matched element or set one
+	 * attribute for matched element.
 	 */
 	panache.attr = function(element, name, value) {
 		if (typeof name === 'string' && typeof value === 'undefined') {
@@ -280,34 +282,88 @@
 
 	/**
 	 * move:
-	 * Move the matched element up, down, right or left in viewport with set speed on scroll.
-	 * You can regulate the speed, number higher than 1 increase the speed. To decrease the speed use a number less than 1, for instance 0.5.
+	 * Move the matched element with set speed on scroll.
+	 * You can regulate the speed from -5 to 10, where -5 is very slow and 10 is
+	 * very fast. The default speed value is -2 and the default center mode is false.
 	 * @dependencies: You must use animate() to execute the scroll event.
 	 */
-	panache.move = function (element, direction, speed) {
-		var value,
-		    direction = direction || 'up',
-		    speed = speed || 0.25;
+	panache.move = function (element, speed, center) {
+		var center = center || false,
+		    speed = speed || -2,
+		    position = 0,
+		    positionY = 0,
+		    screenY = 0,
+		    blockTop = 0,
+		    blockHeight = 0,
+		    percentage = 0;
 
-		switch (direction) {
-			case 'up':
-				direction = -1;
-				value = 'translate3d(0, ' + (Math.round(direction * panache.scrollPosition() * speed)) + 'px, 0)';
-				break;
-			case 'down':
-				direction = 1;
-				value = 'translate3d(0, ' + (Math.round(direction * panache.scrollPosition() * speed)) + 'px, 0)';
-				break;
-			case 'right':
-				direction = 1;
-				value = 'translate3d(' + (Math.round(direction * panache.scrollPosition() * speed)) + 'px, 0, 0)';
-				break;
-			case 'left':
-				direction = -1;
-				value = 'translate3d(' + (Math.round(direction * panache.scrollPosition() * speed)) + 'px, 0, 0)';
-				break;
+		// Limit the given number in the range [min, max]:
+		var clamp = function(number, min, max) {
+			return (number <= min) ? min : ((number >= max) ? max : number);
+		};
+
+		// If someone tries to crank the speed, limit them to -5/+10:
+		speed = clamp(speed, -5, 10);
+
+		// Set scroll position if the center mode is in use:
+		if (center) {
+			if (window.pageYOffset !== undefined) {
+				positionY = window.pageYOffset;
+			} else {
+				positionY = panache.scrollPosition();
+			}
 		}
-		element.style.transform = value;
+
+		blockTop = positionY + element.getBoundingClientRect().top;
+		blockHeight = element.clientHeight || element.offsetHeight || element.scrollHeight;
+		screenY = window.innerHeight;
+
+		if (center) {
+			percentage = 0.5;
+		} else {
+			percentage = (positionY - blockTop + screenY) / (blockHeight + screenY);
+		}
+
+		// Return the latest position value, based on scroll position and speed:
+    function updatePosition(percentage, speed) {
+      var value = (speed * (100 * (1 - percentage)));
+      return Math.round(value);
+    };
+
+    // Set the base position of the element:
+		var base = updatePosition(percentage, speed);
+
+		// Return the latest positionY value, if a scroll has occured:
+    function setPosition() {
+      var oldPositionY = positionY;
+
+      if (window.pageYOffset !== undefined) {
+        positionY = window.pageYOffset;
+      } else {
+        positionY = panache.scrollPosition();
+      }
+
+      if (oldPositionY !== positionY) {
+        // The scroll has changed, return true:
+        return true;
+      }
+
+      // The scroll did not changed, return false:
+      return false;
+    };
+
+		// Run setPosition() to receive the latest positionY value:
+ 		setPosition();
+
+		// After the latest positionY value is generated, recalculate the percentage value:
+		percentage = ((positionY - blockTop + screenY) / (blockHeight + screenY));
+
+		// Generate the position value:
+		position = updatePosition(percentage, speed) - base;
+
+		// Move the element:
+    var value = 'translate3d(0, ' + position + 'px' + ', 0)';
+    element.style.transform = value;
 	};
 
 	/**
@@ -435,9 +491,9 @@
 	 */
 	panache.scrollValue = function () {
 		var scrollTop = window.pageYOffset,
-			  scrollHeight = document.body.scrollHeight,
-			  windowHeight = window.innerHeight,
-			  scrollValue = (scrollTop / (scrollHeight - windowHeight)) * 100;
+				scrollHeight = document.body.scrollHeight,
+				windowHeight = window.innerHeight,
+				scrollValue = (scrollTop / (scrollHeight - windowHeight)) * 100;
 
 		return scrollValue;
 	}
