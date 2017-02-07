@@ -115,6 +115,8 @@ Fade element with opacity value set from current scroll value and speed. You mus
 panache.fade(element, speed) // => collection
 ```
 
+`speed => integer`
+
 ### H
 #### hasClass()
 Determine if the matched element has the given class.
@@ -148,13 +150,13 @@ panache.last(element) // => collection
 
 ### M
 #### move()
-Move the matched element `up`, `down`, `right` or `left` in viewport with set `speed` on scroll. You can regulate the speed, number higher than `1` increase the speed. To decrease the speed use a number less than `1`, for instance `0.5`. You must use `animate()` to execute the scroll event.
+Move the matched element with set `speed` on scroll. You can regulate the speed from `-5` to `10`, where `-5` is very slow and `10` is very fast. The default speed value is `-2` and the default center mode is `false`. You must use `animate()` to execute the scroll event.
 
-`direction => string`
 `speed => integer`
+`center => boolean`
 
 ```js
-panache.move(element, direction, speed) // => collection
+panache.move(element, speed, center) // => collection
 ```
 
 ### O
@@ -164,6 +166,8 @@ Attach an event handler function for one or more events to the selected elements
 ```js
 panache.on(event, element, handler) // => collection
 ```
+
+`handler => function`
 
 ### P
 #### parent()
@@ -187,6 +191,8 @@ Wait until the DOM is ready before executing code.
 ```js
 panache.ready(handler) // => collection
 ```
+
+`handler => function`
 
 #### remove()
 Remove the set of matched elements from the DOM.
