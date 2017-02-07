@@ -303,6 +303,7 @@
 		};
 		// If someone tries to crank the speed, limit them to -5/+10:
 		speed = clamp(speed, -5, 10);
+
 		// Set scroll position if the center mode is in use:
 		if (center) {
 			if (window.pageYOffset !== undefined) {
@@ -311,9 +312,11 @@
 				positionY = panache.scrollPosition();
 			}
 		}
+
 		blockTop = positionY + element.getBoundingClientRect().top;
 		blockHeight = element.clientHeight || element.offsetHeight || element.scrollHeight;
 		screenY = window.innerHeight;
+
 		if (center) {
 			percentage = 0.5;
 		} else {
@@ -332,18 +335,15 @@
 		// Return the latest positionY value, if a scroll has occured:
     function setPosition() {
       var oldPositionY = positionY;
-
       if (window.pageYOffset !== undefined) {
         positionY = window.pageYOffset;
       } else {
         positionY = panache.scrollPosition();
       }
-
       if (oldPositionY !== positionY) {
         // The scroll has changed, return true:
         return true;
       }
-
       // The scroll did not changed, return false:
       return false;
     };
