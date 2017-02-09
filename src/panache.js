@@ -287,13 +287,13 @@
 	 */
 	panache.move = function (element, speed, center) {
 		var center = center || false, // Default to false
-		    speed = speed || -2, // Default speed is -2
-		    position = 0,
-		    positionY = 0,
-		    screenY = 0,
-		    blockTop = 0,
-		    blockHeight = 0,
-		    percentage = 0;
+				speed = speed || -2, // Default speed is -2
+				position = 0,
+				positionY = 0,
+				screenY = 0,
+				blockTop = 0,
+				blockHeight = 0,
+				percentage = 0;
 
 		// Limit the given number in the range [min, max]:
 		var clamp = function(number, min, max) {
@@ -325,32 +325,32 @@
 		}
 
 		// Return the latest position value, based on scroll position and speed:
-    function updatePosition(percentage, speed) {
-      var value = (speed * (100 * (1 - percentage)));
-      return Math.round(value);
-    };
+		function updatePosition(percentage, speed) {
+			var value = (speed * (100 * (1 - percentage)));
+			return Math.round(value);
+		};
 
-    // Set the base position of the element:
+		// Set the base position of the element:
 		var base = updatePosition(percentage, speed);
 
 		// Return the latest positionY value, if a scroll has occured:
-    function setPosition() {
-      var oldPositionY = positionY;
-      if (window.pageYOffset !== undefined) {
-        positionY = window.pageYOffset;
-      } else {
-        positionY = panache.scrollPosition();
-      }
-      if (oldPositionY !== positionY) {
-        // The scroll has changed, return true:
-        return true;
-      }
-      // The scroll did not changed, return false:
-      return false;
-    };
+		function setPosition() {
+			var oldPositionY = positionY;
+			if (window.pageYOffset !== undefined) {
+				positionY = window.pageYOffset;
+			} else {
+				positionY = panache.scrollPosition();
+			}
+			if (oldPositionY !== positionY) {
+				// The scroll has changed, return true:
+				return true;
+			}
+			// The scroll did not changed, return false:
+			return false;
+		};
 
 		// Run setPosition() to receive the latest positionY value:
- 		setPosition();
+		setPosition();
 
 		// After the latest positionY value is generated, recalculate the percentage value:
 		percentage = ((positionY - blockTop + screenY) / (blockHeight + screenY));
@@ -359,8 +359,8 @@
 		position = updatePosition(percentage, speed) - base;
 
 		// Move the element:
-    var value = 'translate3d(0, ' + position + 'px' + ', 0)';
-    element.style.transform = value;
+		var value = 'translate3d(0, ' + position + 'px' + ', 0)';
+		element.style.transform = value;
 	};
 
 	/**
