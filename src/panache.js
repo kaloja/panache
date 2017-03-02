@@ -1,8 +1,8 @@
-(function (root, factory) {
+(function (window, factory) {
 
-	root.panache = root.$ = factory();
+	window.panache = window.$ = factory();
 
-})(this, function () {
+})(window, function () {
 
 	'use strict';
 
